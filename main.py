@@ -8,7 +8,9 @@ def start(message):
     hello_user = f'What\'s UP, {message.from_user.first_name}'
     quote_bot = quote.print_quotes()
     bot.send_message(message.chat.id, hello_user)
-    bot.send_message(message.chat.id, quote_bot)
+    for q in quote_bot:
+        bot.send_message(message.chat.id, q.find(class_='text').get_text() + "\n"
+                         + q.find(class_='author').get_text() + "\n" + q.find(class_='keywords')['content'])
 
 
 # For my learn
